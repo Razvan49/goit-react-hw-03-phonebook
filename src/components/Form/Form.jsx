@@ -35,7 +35,7 @@ export class Form extends Component {
               className={styles.input}
               type="text"
               name="name"
-              pattern="^[a-zA-Z]+(([' -][a-zA-Z ])?[a-zA-Z]*)*$"
+              pattern="^[a-zA-Z\s]{1,32}$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               value={this.state.name}
               onChange={this.handleChange}
@@ -49,7 +49,7 @@ export class Form extends Component {
               className={styles.input}
               type="tel"
               name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              pattern="^\+?\d{1,3}\(?\d{1,4}\)?(?:[0-9]-?.?){6,14}[0-9]$"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               value={this.state.number}
               onChange={this.handleChange}

@@ -18,6 +18,23 @@ export class App extends Component {
     ],
     filter: '',
   };
+  componentDidMount() {
+    const storedContacts = localStorage.getItem('contacts');
+    if (storedContacts) {
+      this.setState({ contacts: JSON.parse(storedContacts) });
+    } else {
+      // Dacă nu există date salvate in local storage, adaugam datele existente in componenta deja creata
+      this.setState(this.state);
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    // Verifică dacă lista de contacte s-a schimbat
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   handleSubmit = newContact => {
     const { contacts } = this.state;
     const duplicate = contacts.some(
